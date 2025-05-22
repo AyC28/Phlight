@@ -99,8 +99,12 @@
             
             reader1.onload = function() {
                 const selfData = reader1.result.split(',')[1];
+                // Store image1 in sessionStorage
+                sessionStorage.setItem("image1", reader1.result);
                 reader2.onload = function() {
                     const refData = reader2.result.split(',')[1];
+                    // Store image2 in sessionStorage
+                    sessionStorage.setItem("image2", reader2.result);
                     // Check if pyscript is available
                     if (typeof pyscript === 'undefined') {
                         console.error('PyScript is not loaded');
@@ -114,7 +118,7 @@
                         result
                     `).then(result => {
                         console.log('Python result:', result);
-                        localStorage.setItem("phlightResult", JSON.stringify(result));
+                        sessionStorage.setItem("phlightResult", JSON.stringify(result));
                         window.location.href = 'results.htm';
                     }).catch(error => {
                         console.error('Error in Python execution:', error);
